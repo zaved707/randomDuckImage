@@ -16,14 +16,21 @@ android {
         minSdk = 29
         targetSdk = 35
         versionCode = 1
-        versionName = "1.0"
+        versionName = "0.1"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
-
+    splits {
+        abi {
+            isEnable = true
+            reset() // Clears the default list of ABIs
+            include("arm64-v8a") // Only include arm64-v8a
+            isUniversalApk = false // Disable universal APK (optional, if you don't want a universal APK)
+        }
+    }
     buildTypes {
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
